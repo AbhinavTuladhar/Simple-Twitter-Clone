@@ -29,16 +29,6 @@ const App = () => {
   }
 
   const updateContent = (id, newContent) => {
-    // setTweetData(data => {
-    //   data.map(tweet => {
-    //     if (id === tweet.id) {
-    //       return {
-    //         ...tweet, content: newContent
-    //       }
-    //     }
-    //     return tweet;
-    //   })
-    // })
     setTweetData(prevData => {
       const updatedData = prevData.map(tweet => {
         if (tweet.id === id) {
