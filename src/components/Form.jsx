@@ -24,10 +24,10 @@ const Form = ({ addContent }) => {
 
   return (
     <>
-      <div className='w-screen sm:w-7/12 mx-auto flex flex-row items-center justify-between'>
+      <div className='w-screen sm:w-7/12 mx-auto flex flex-row items-center justify-between pt-4'>
         <div className='w-10/12 flex flex-col'>
           <textarea 
-            className='bg-slate-500 w-full h-24 p-4 hover:shadow-blue-300 hover:shadow-sm' 
+            className='dark:bg-slate-500 w-full h-24 p-4 hover:shadow-blue-300 hover:shadow-sm bg-yellow-50 dark:text-slate-50 duration-500' 
             onChange={handleUpdates} 
             placeholder='Tweet about 30 days of React... '
             value={text}  
