@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import { BiUserCircle, BiEdit, BiTrash, BiComment } from 'react-icons/bi'
-import { AiOutlineHeart, AiOutlineRetweet } from 'react-icons/ai'
+import { AiOutlineHeart, AiOutlineRetweet, AiFillHeart } from 'react-icons/ai'
 
 const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) => {
   const now = new Date();
@@ -9,6 +9,7 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
 
   const [isUpdating, toggleUpdating] = useState(false)
   const [tweetContent, setTweetContent] = useState(content)
+  const [hearted, toggleHearted] = useState(false)
 
   // This is for toggling between updating and viewing mode.
   const toggleUpdate = () => {
@@ -32,6 +33,12 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
     setTweetContent(prevContent => {
       return newValue
     })
+  }
+
+  // this is for toggling the heart
+  const heartClassName = ''
+  const handleHeart = () => {
+    toggleHearted(!hearted)
   }
 
   const viewingContent = (
@@ -60,9 +67,28 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
           />
         </div>
         <div className='flex flex-row gap-4'>
-          <BiComment className='hover:text-blue-600 duration-200 hover:cursor-pointer' size={32} />
-          <AiOutlineHeart className='hover:text-red-600 duration-200 hover:cursor-pointer' size={32} />
-          <AiOutlineRetweet className='hover:text-green-600 duration-200 hover:cursor-pointer' size={32} />
+          <BiComment 
+            className='hover:text-blue-600 duration-200 hover:cursor-pointer' 
+            size={32} 
+          />
+          {hearted ? 
+            <AiFillHeart
+              className='hover:text-red-600 duration-200 hover:cursor-pointer text-red-600 active:scale-105'
+              size={32}
+              onClick={handleHeart}
+            />
+            :
+            <AiOutlineHeart 
+              className='hover:text-red-600 duration-200 hover:cursor-pointer'
+              size={32} 
+              onClick={handleHeart}
+            />
+          }
+          
+          <AiOutlineRetweet 
+            className='hover:text-green-600 duration-200 hover:cursor-pointer' 
+            size={32} 
+          />
         </div>
         <div>
           {formattedDate}
