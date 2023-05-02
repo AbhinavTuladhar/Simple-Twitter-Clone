@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
-import { BiUserCircle, BiEdit, BiTrash, BiComment } from 'react-icons/bi'
-import { AiOutlineHeart, AiOutlineRetweet, AiFillHeart } from 'react-icons/ai'
+import { BiUserCircle } from 'react-icons/bi'
+import TweetBottomRow from './TweetBottomRow'
 
 const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) => {
   const now = new Date();
@@ -36,7 +36,6 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
   }
 
   // this is for toggling the heart
-  const heartClassName = ''
   const handleHeart = () => {
     toggleHearted(!hearted)
   }
@@ -53,47 +52,13 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
       </div>
       
       {/* This is for the bottom row */}
-      <div className='flex justify-between items-center m-4'>
-        <div className='flex flex-row gap-4 text-blue-300'>
-          <BiEdit 
-            className='hover:text-blue-600 duration-200 hover:cursor-pointer' 
-            size={32}
-            onClick={toggleUpdate}
-          />
-          <BiTrash 
-            className='hover:text-red-600 duration-200 hover:cursor-pointer' 
-            size={32} 
-            onClick={deleteData}
-          />
-        </div>
-        <div className='flex flex-row gap-4'>
-          <BiComment 
-            className='hover:text-blue-600 duration-200 hover:cursor-pointer' 
-            size={32} 
-          />
-          {hearted ? 
-            <AiFillHeart
-              className='hover:text-red-600 duration-200 hover:cursor-pointer text-red-600 active:scale-105'
-              size={32}
-              onClick={handleHeart}
-            />
-            :
-            <AiOutlineHeart 
-              className='hover:text-red-600 duration-200 hover:cursor-pointer'
-              size={32} 
-              onClick={handleHeart}
-            />
-          }
-          
-          <AiOutlineRetweet 
-            className='hover:text-green-600 duration-200 hover:cursor-pointer' 
-            size={32} 
-          />
-        </div>
-        <div>
-          {formattedDate}
-        </div>
-      </div>
+      <TweetBottomRow 
+        toggleUpdate={toggleUpdate}
+        deleteData={deleteData}
+        hearted={hearted}
+        handleHeart={handleHeart}
+        formattedDate={formattedDate}
+      />
     </div>
   )
 
