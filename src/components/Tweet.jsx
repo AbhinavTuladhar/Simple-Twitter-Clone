@@ -67,15 +67,15 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
       <textarea 
         value={tweetContent} 
         onChange={updateTweetContent} 
-        className='h-32 w-full bg-slate-800 p-4' 
+        className='h-32 w-full dark:bg-slate-800 dark:text-white bg-slate-50 text-slate-800 p-4 duration-500' 
       />
       <button
-        className='bg-blue-400 p-1 m-2'
+        className='bg-blue-400 p-2 m-2 rounded-lg'
         onClick={updateData}
       > 
         Save </button>
       <button
-        className='bg-red-400 p-1 m-2'
+        className='bg-red-400 p-2 m-2 rounded-lg'
         onClick={toggleUpdate}
       > Cancel </button>
     </div>
