@@ -37,7 +37,7 @@ const Form = ({ addContent }) => {
           > {charactersRemaining} </p>
         </div>
         <button 
-          className={`${text === '' ? disabledColour : enabledColour} text-white text-xl p-2 rounded-lg h-1/2`} 
+          className={`${text === '' ? disabledColour : enabledColour} text-white text-xl p-2 rounded-lg h-1/2 duration-300`} 
           disabled={text === '' ? true : false} 
           onClick={addTweet}
         > Add Post </button>

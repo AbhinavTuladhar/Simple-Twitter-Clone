@@ -41,7 +41,7 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
   }
 
   const viewingContent = (
-    <div className='border border-slate-300 w-screen sm:w-7/12 mx-auto text-xl py-1'>
+    <div className='border border-slate-300 w-screen sm:w-7/12 mx-auto text-xl py-1 mt-4'>
       <div className='text-slate-400 flex flex-row items-center m-4 gap-4'>
         <BiUserCircle size={48} />
         {author}

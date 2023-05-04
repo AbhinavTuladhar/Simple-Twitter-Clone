@@ -21,7 +21,9 @@ const App = () => {
 
   const addContent = ( content ) => {
     // First find the maximum value of the id in the tweetData array
-    const maxId = tweetData.reduce((prev, current) => (prev.id > current.id) ? prev : current).id;
+    const maxId = tweetData.length > 0 ? 
+      tweetData.reduce((prev, current) => (prev.id > current.id) ? prev : current).id
+      : 0
     const newTweet = {
       id: maxId + 1,
       author: 'Anonymous User',
@@ -54,7 +56,15 @@ const App = () => {
   }
 
   const tweetList = tweetData.map(tweet => {
-    return <Tweet {...tweet} id={tweet.id} key = {tweet.id} deleteContent={deleteContent} updateContent={updateContent} />
+    return (
+      <Tweet 
+        {...tweet} 
+        id={tweet.id} 
+        key = {tweet.id} 
+        deleteContent={deleteContent} 
+        updateContent={updateContent} 
+      />
+    )
   })
 
   return (
