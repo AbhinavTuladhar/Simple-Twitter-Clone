@@ -2,7 +2,15 @@ import { React, useState } from 'react'
 import { BiUserCircle } from 'react-icons/bi'
 import TweetBottomRow from './TweetBottomRow'
 
-const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) => {
+const Tweet = ({ 
+  id,
+  author,
+  handle,
+  content,
+  deleteContent,
+  updateContent,
+  maxLength: maxTweetLength
+}) => {
   const now = new Date();
   const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
   const formattedDate = now.toLocaleString('en-US', options);
@@ -37,8 +45,12 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
   
   // updating the contents of the tweetContent state..
   const updateTweetContent = (event) => {
-    const { value: newValue } = event.target
-    setTweetContent(newValue)
+    const { value: newContent } = event.target
+    if (newContent.length <= maxTweetLength) {
+      setTweetContent(newContent)
+    } else {
+      alert(`Your edit has exceeded the limit of ${maxTweetLength} characters.`)
+    }
   }
 
   // this is for toggling the heart
@@ -75,6 +87,9 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
         onChange={updateTweetContent} 
         className='h-32 w-full dark:bg-slate-800 dark:text-white bg-slate-50 text-slate-800 p-4 duration-500' 
       />
+      <div className='text-blue-400 text-sm text-right my-2 px-2 w-full'>
+        {maxTweetLength - tweetContent.length}
+      </div>
       <button
         className='bg-blue-400 p-2 m-2 rounded-lg'
         onClick={updateData}

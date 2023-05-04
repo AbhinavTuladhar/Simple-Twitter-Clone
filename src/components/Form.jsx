@@ -1,26 +1,27 @@
 import { React, useState } from 'react'
 
-const Form = ({ addContent }) => {
+const Form = ({ addContent, maxLength: maxTweetLength }) => {
   const [text, setText] = useState('')
-  const [charactersRemaining, setCharactersRemaining] = useState(250)
+  const [charactersRemaining, setCharactersRemaining] = useState(maxTweetLength)
 
   const disabledColour = 'bg-blue-200'
   const enabledColour = 'bg-blue-400'
 
   const handleUpdates = (event) => {
     const newText = event.target.value
-    setText(newText)
-    setCharactersRemaining(prevState => {
-      return 250 - newText.length
-    })
+    if (newText.length <= maxTweetLength) {
+      setText(newText)
+      setCharactersRemaining(maxTweetLength - newText.length)
+    } else {
+      alert(`Your tweet has reached the limit of ${maxTweetLength} characters.`)
+    }
   }
 
   const addTweet = () => {
     setText('')
     addContent(text)
-    setCharactersRemaining(250)
+    setCharactersRemaining(maxTweetLength)
   }
-
 
   return (
     <>

@@ -7,6 +7,7 @@ import SideBar from './components/SideBar'
 const App = () => {
   const [tweetData, setTweetData] = useState(twitterData)
   const [theme, setTheme] = useState('light')
+  const maxLength = 45
 
   useEffect(() => {
     if (theme === 'dark')
@@ -63,6 +64,7 @@ const App = () => {
         key = {tweet.id} 
         deleteContent={deleteContent} 
         updateContent={updateContent} 
+        maxLength={maxLength}
       />
     )
   })
@@ -75,7 +77,7 @@ const App = () => {
         className='duration-500'
       />
       <div className='dark:bg-black dark:text-white bg-slate-50 text-slate-800 duration-500'>
-        <Form addContent={addContent} />
+        <Form addContent={addContent} maxLength={maxLength} />
         {tweetList}
       </div>
     </>
