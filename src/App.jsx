@@ -37,11 +37,15 @@ const App = () => {
   }
 
   const deleteContent = (id) => {
+    const deleteConfirmation = window.confirm('Are you sure you want to delete this tweet?')
+    if (!deleteConfirmation)
+      return
     setTweetData(
       tweetData.filter(tweet => {
         return tweet.id !== id
       })
     )
+    setTimeout(() => {alert('The tweet has been deleted!')}, 100)
   }
 
   const updateContent = (id, newContent) => {
