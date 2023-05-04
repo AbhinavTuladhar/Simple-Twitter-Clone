@@ -9,12 +9,18 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
 
   const [isUpdating, toggleUpdating] = useState(false)
   const [tweetContent, setTweetContent] = useState(content)
+  const [originalTweetContent, setOriginalTweetContent] = useState(content)
   const [hearted, toggleHearted] = useState(false)
 
   // This is for toggling between updating and viewing mode.
   const toggleUpdate = () => {
+    setOriginalTweetContent(tweetContent)
     toggleUpdating(prevStatus => !prevStatus)
-  }
+    if (isUpdating) {
+      setTweetContent(originalTweetContent)
+      setOriginalTweetContent(tweetContent)
+    }
+  }  
 
   // 'deleting' the tweet itself.
   const deleteData = () => {
@@ -25,14 +31,14 @@ const Tweet = ({ id, author, handle, content, deleteContent, updateContent }) =>
   const updateData = () => {
     updateContent(id, tweetContent);
     toggleUpdate()
+    setTweetContent(tweetContent)
+    setOriginalTweetContent(tweetContent);
   }
   
   // updating the contents of the tweetContent state..
   const updateTweetContent = (event) => {
     const { value: newValue } = event.target
-    setTweetContent(prevContent => {
-      return newValue
-    })
+    setTweetContent(newValue)
   }
 
   // this is for toggling the heart
