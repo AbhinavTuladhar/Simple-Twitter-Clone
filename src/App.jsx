@@ -7,7 +7,7 @@ import SideBar from './components/SideBar'
 const App = () => {
   const [tweetData, setTweetData] = useState(twitterData)
   const [theme, setTheme] = useState('light')
-  const maxLength = 45
+  const maxLength = 250
 
   useEffect(() => {
     if (theme === 'dark')
